@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import trybewallet from '../imgs/logo-trybe-wallet.png';
+import changeEmail from '../redux/actions';
 
 class Login extends React.Component {
   state = {
@@ -17,8 +18,10 @@ class Login extends React.Component {
   };
 
   handleSubmit = () => {
-    const { history } = this.props;
+    const { email } = this.state;
+    const { history, dispatch } = this.props;
     history.push('/carteira');
+    dispatch(changeEmail(email));
   };
 
   render() {
@@ -59,6 +62,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   history: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(Login);
