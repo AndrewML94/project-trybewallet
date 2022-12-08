@@ -50,7 +50,7 @@ class Login extends React.Component {
             && password.length >= MIN_CHARACTER) }
           onClick={ this.handleSubmit }
         >
-          Enviar
+          Entrar
         </button>
       </form>
     );
