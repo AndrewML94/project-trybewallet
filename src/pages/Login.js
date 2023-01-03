@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import trybewallet from '../imgs/logo-trybe-wallet.png';
-import changeEmail from '../redux/actions';
+import { changeEmail } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
@@ -61,7 +61,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
