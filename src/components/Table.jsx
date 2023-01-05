@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense } from '../redux/actions';
+import { deleteExpense, editExpense } from '../redux/actions';
 
 class Table extends Component {
   conversionCalculator = (param) => {
@@ -76,8 +76,9 @@ class Table extends Component {
                   <button
                     type="button"
                     data-testid="edit-btn"
+                    onClick={ () => dispatch(editExpense(elem.id)) }
                   >
-                    Editar
+                    Editar despesa
                   </button>
                   <button
                     type="button"

@@ -2,7 +2,9 @@ import {
   CHANGE_EMAIL,
   CHANGE_EXCHANGE,
   CHANGE_INFO,
-  DELETE_EXPENSE } from './actionTypes';
+  DELETE_EXPENSE,
+  EDIT_EXPENSE,
+  SAVE_EXPENSE_EDIT } from './actionTypes';
 import fetchAPI from '../../services/fetchAPI';
 
 export const changeEmail = (email) => ({
@@ -41,4 +43,14 @@ export const changeInfo = ({
 export const deleteExpense = (expense) => ({
   type: DELETE_EXPENSE,
   payload: expense,
+});
+
+export const editExpense = (id) => ({
+  type: EDIT_EXPENSE,
+  payload: id,
+});
+
+export const saveExpenseEdit = (newExpenses, expenses) => ({
+  type: SAVE_EXPENSE_EDIT,
+  payload: expenses.map((elem) => (elem.id === newExpenses.id ? newExpenses : elem)),
 });
