@@ -1,4 +1,4 @@
-import { CHANGE_EXCHANGE, CHANGE_INFO } from '../actions/actionTypes';
+import { CHANGE_EXCHANGE, CHANGE_INFO, DELETE_EXPENSE } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -16,6 +16,10 @@ const wallet = (state = INITIAL_STATE, action) => {
   case CHANGE_INFO: return {
     ...state,
     expenses: [...state.expenses, action.payload],
+  };
+  case DELETE_EXPENSE: return {
+    ...state,
+    expenses: state.expenses.filter((elem) => elem.id !== action.payload.id),
   };
   default: return state;
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteExpense } from '../redux/actions';
 
 class Table extends Component {
   conversionCalculator = (param) => {
@@ -9,7 +10,7 @@ class Table extends Component {
   };
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, dispatch } = this.props;
     return (
       <table>
         <thead>
@@ -71,18 +72,21 @@ class Table extends Component {
                 <td>
                   { elem.exchangeRates[elem.currency].name }
                 </td>
-                <button
-                  type="button"
-                  data-testid="edit-btn"
-                >
-                  Editar
-                </button>
-                <button
-                  type="button"
-                  data-testid="delete-btn"
-                >
-                  Excluir
-                </button>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="edit-btn"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => dispatch(deleteExpense(elem)) }
+                  >
+                    Excluir
+                  </button>
+                </td>
               </tr>
             ))
           }

@@ -1,4 +1,8 @@
-import { CHANGE_EMAIL, CHANGE_EXCHANGE, CHANGE_INFO } from './actionTypes';
+import {
+  CHANGE_EMAIL,
+  CHANGE_EXCHANGE,
+  CHANGE_INFO,
+  DELETE_EXPENSE } from './actionTypes';
 import fetchAPI from '../../services/fetchAPI';
 
 export const changeEmail = (email) => ({
@@ -32,4 +36,9 @@ export const changeInfo = ({
     tag,
     exchangeRates,
   },
+});
+
+export const deleteExpense = (expense) => ({
+  type: DELETE_EXPENSE,
+  payload: expense,
 });
