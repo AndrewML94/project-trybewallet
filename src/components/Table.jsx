@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Table extends Component {
+  conversionCalculator = (param) => {
+    const conversion = +param.value * +param.exchangeRates[param.currency].ask;
+    return conversion.toFixed(2);
+  };
+
   render() {
+    const { expenses } = this.props;
     return (
       <table>
         <thead>
@@ -35,9 +42,57 @@ class Table extends Component {
             </th>
           </tr>
         </thead>
+        <tbody>
+          {
+            expenses.map((elem) => (
+              <tr key={ elem.id }>
+                <td>
+                  {elem.description}
+                </td>
+                <td>
+                  {elem.tag}
+                </td>
+                <td>
+                  {elem.method}
+                </td>
+                <td>
+                  {Number(elem.value).toFixed(2)}
+                </td>
+                <td>
+                  {elem.currency}
+                </td>
+                <td>
+                  { Number(elem.exchangeRates[elem.currency].ask).toFixed(2) }
+                </td>
+                <td>
+                  { this.conversionCalculator(elem) }
+                </td>
+                <td>
+                  { elem.exchangeRates[elem.currency].name }
+                </td>
+                <button
+                  type="button"
+                  data-testid="edit-btn"
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  data-testid="delete-btn"
+                >
+                  Excluir
+                </button>
+              </tr>
+            ))
+          }
+        </tbody>
       </table>
     );
   }
 }
 
-export default Table;
+const mapStateToProps = (state) => ({
+  expenses: state.wallet.expenses,
+});
+
+export default connect(mapStateToProps)(Table);
