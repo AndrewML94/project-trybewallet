@@ -6,20 +6,26 @@ import iconperson from '../imgs/icon-person.png';
 import iconcoins from '../imgs/icon-coins.png';
 
 class Header extends Component {
-  state = {
-    amount: 0,
+  conversionToReal = () => {
+    const { expenses } = this.props;
+    let amount = 0;
+    expenses.forEach((elem) => {
+      const sum = +elem.exchangeRates[elem.currency].ask * +elem.value;
+      amount += sum;
+    });
+    return amount;
   };
 
   render() {
-    const { amount } = this.state;
     const { email } = this.props;
     return (
       <div>
         <img src={ trybewallet } alt="Logo referente a Trybewallet" />
         <div>
           <img src={ iconcoins } alt="Icone de moedas" />
-          <span data-testid="total-field">{ ` Total de despesas: ${amount} ` }</span>
-          <span data-testid="header-currency-field">BRL</span>
+          <span>Total de despesas: </span>
+          <span data-testid="total-field">{ this.conversionToReal().toFixed(2) }</span>
+          <span data-testid="header-currency-field"> BRL</span>
         </div>
         <div>
           <img src={ iconperson } alt="Icone de avatar" />
@@ -32,10 +38,12 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  expenses: state.wallet.expenses,
 });
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
+  expenses: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default connect(mapStateToProps)(Header);

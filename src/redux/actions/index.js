@@ -1,4 +1,4 @@
-import { CHANGE_EMAIL, CHANGE_EXCHANGE } from './actionTypes';
+import { CHANGE_EMAIL, CHANGE_EXCHANGE, CHANGE_INFO } from './actionTypes';
 import fetchAPI from '../../services/fetchAPI';
 
 export const changeEmail = (email) => ({
@@ -19,3 +19,17 @@ export const chanceExchange = () => (
     }
   }
 );
+
+export const changeInfo = ({
+  id, value, description, currency, method, tag, exchangeRates }) => ({
+  type: CHANGE_INFO,
+  payload: {
+    id,
+    value,
+    description,
+    currency,
+    method,
+    tag,
+    exchangeRates,
+  },
+});
