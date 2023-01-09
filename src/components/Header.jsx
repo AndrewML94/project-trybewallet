@@ -20,15 +20,27 @@ class Header extends Component {
     const { email } = this.props;
     return (
       <div>
-        <img src={ trybewallet } alt="Logo referente a Trybewallet" />
+        <img
+          src={ trybewallet }
+          alt="Logo referente a Trybewallet"
+          data-testid="trybewallet"
+        />
         <div>
-          <img src={ iconcoins } alt="Icone de moedas" />
+          <img
+            src={ iconcoins }
+            alt="Icone de moedas"
+            data-testid="coins"
+          />
           <span>Total de despesas: </span>
           <span data-testid="total-field">{ this.conversionToReal().toFixed(2) }</span>
           <span data-testid="header-currency-field"> BRL</span>
         </div>
         <div>
-          <img src={ iconperson } alt="Icone de avatar" />
+          <img
+            src={ iconperson }
+            alt="Icone de avatar"
+            data-testid="avatar"
+          />
           <span data-testid="email-field">{ email }</span>
         </div>
       </div>

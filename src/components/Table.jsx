@@ -78,7 +78,7 @@ class Table extends Component {
                     data-testid="edit-btn"
                     onClick={ () => dispatch(editExpense(elem.id)) }
                   >
-                    Editar despesa
+                    Editar
                   </button>
                   <button
                     type="button"

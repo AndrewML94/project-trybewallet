@@ -149,7 +149,7 @@ WalletForm.propTypes = {
   expenses: PropTypes.instanceOf(Object).isRequired,
   dispatch: PropTypes.func.isRequired,
   editor: PropTypes.bool.isRequired,
-  idToEdit: PropTypes.bool.isRequired,
+  idToEdit: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(WalletForm);
